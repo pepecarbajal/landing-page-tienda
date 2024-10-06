@@ -1,53 +1,84 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import logo from './clogo.png';
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import logo from './clogo.png'
 
-const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [headerHover, setHeaderHover] = useState(false);
+export default function Header({ onLoginClick, onRegisterClick, onNavigation }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [headerHover, setHeaderHover] = useState(false)
+
+  const menuItems = [
+    { name: 'Inicio', id: 'inicio' },
+    { name: 'Tienda', id: 'tienda' },
+    { name: 'Acerca de', id: 'acerca' },
+    { name: 'Contacto', id: 'contacto' },
+  ]
+
+  const handleNavClick = (id) => {
+    onNavigation(id)
+    setMenuOpen(false)
+  }
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 py-4 z-50 transition-all duration-700 ${headerHover || menuOpen ? 'bg-transparent' : 'bg-transparent'}`} 
-      onMouseEnter={() => setHeaderHover(true)} 
+    <header
+      className={`fixed top-0 left-0 right-0 py-4 z-50 transition-all duration-700 ${
+        headerHover || menuOpen ? 'bg-transparent' : 'bg-transparent'
+      }`}
+      onMouseEnter={() => setHeaderHover(true)}
       onMouseLeave={() => {
         if (!menuOpen) {
-          setHeaderHover(false);
+          setHeaderHover(false)
         }
-      }}  
+      }}
     >
       <div className="flex items-center justify-between mx-4">
-        <img src={logo} alt="Logo" className="h-16 ml-5" />
-        
+        <img src={logo} alt="Logo" className="h-16 w-auto ml-5" />
+
         <nav className="hidden md:flex mr-8 items-center justify-center space-x-8">
-          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Inicio</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Tienda</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Acerca de</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Contacto</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Iniciar Sesión</button>
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              className="text-gray-900 hover:text-gray-600 text-2xl"
+            >
+              {item.name}
+            </button>
+          ))}
+          <button onClick={onLoginClick} className="text-gray-900 hover:text-gray-600 text-2xl">
+            Iniciar Sesión
+          </button>
         </nav>
 
-        <button 
-          onClick={() => setMenuOpen(!menuOpen)} 
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-gray-600 hover:text-gray-900"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         >
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {menuOpen && (
-        <nav className={`absolute top-full left-0 right-0 h-screen bg-yellow-400 shadow-lg z-50 flex flex-col items-center py-4`}>
-          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Inicio</button>
-          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Tienda</button>
-          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Acerca de</button>
-          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Contacto</button>
-          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Iniciar Sesión</button>
-          {/* Si no hay más botones, puedes agregar un espacio vacío para ocupar el resto de la altura */}
-          <div className="flex-grow"></div>
+        <nav className="absolute top-full left-0 right-0 h-screen bg-yellow-400 flex flex-col items-center justify-center py-4 md:hidden">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              className="text-gray-900 hover:text-gray-600 text-5xl mb-6"
+            >
+              {item.name}
+            </button>
+          ))}
+          <button 
+            onClick={() => {
+              onLoginClick()
+              setMenuOpen(false)
+            }} 
+            className="text-gray-900 hover:text-gray-600 text-5xl mb-6"
+          >
+            Iniciar Sesión
+          </button>
         </nav>
       )}
     </header>
-  );
-};
-
-export default Header;
+  )
+}
