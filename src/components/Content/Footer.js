@@ -29,17 +29,17 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Síguenos en Redes Sociales</h3>
             <ul className="flex space-x-4">
               <li className="text-gray-400 hover:text-white">
-                <a href="#">
+                <a href="https://www.facebook.com/profile.php?id=100009327066903&mibextid=ZbWKwL">
                   <Facebook size={30} />
                 </a>
               </li>
               <li className="text-gray-400 hover:text-white">
-                <a href="#">
+                <a href="https://instagram.com">
                   <Instagram size={30} />
                 </a>
               </li>
               <li className="text-gray-400 hover:text-white">
-                <a href="#">
+                <a href="https://twitter.com">
                   <Twitter size={30} />
                 </a>
               </li>
