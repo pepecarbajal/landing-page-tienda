@@ -13,10 +13,10 @@ const AboutUs = () => {
           <div className="md:w-1/2 md:pl-12">
             <h2 className="text-3xl font-bold mb-6">Nuestra Historia</h2>
             <p className="text-gray-600 mb-4">
-              Desde 1950, La Michoacana ha sido sinónimo de helados y paletas de alta calidad en México. Nuestras recetas tradicionales y sabores auténticos han deleitado a generaciones de familias.
+              HAME ha sido sinónimo de helados y paletas de alta calidad en Chilpancingo. Con  recetas tradicionales y sabores auténticos.
             </p>
             <p className="text-gray-600 mb-4">
-              Utilizamos solo los ingredientes más frescos y naturales para crear nuestros deliciosos helados y paletas, manteniendo viva la tradición de los helados artesanales mexicanos.
+              Utilizamos solo los ingredientes más frescos y naturales para crear nuestros deliciosos helados y paletas.
             </p>
             <button className="bg-primary text-white py-2 px-6 rounded-full hover:bg-primary-dark transition duration-300">
               Conoce Nuestra Historia

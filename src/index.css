@@ -8,7 +8,7 @@ html, body {
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  background: radial-gradient(circle, #ffffff, #ffee01 30%, #eb1c74 70%);
+  background: radial-gradient(circle, #ff9393, #ffee01 30%, #eb1c74 70%);
   background-attachment: fixed; /* Para que el gradiente no se repita al hacer scroll */
 }
 

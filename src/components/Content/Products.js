@@ -31,7 +31,7 @@ const Products = () => {
               />
               <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              <button className="bg-secondary text-black border-color-primary px-4 py-2 rounded">
                 Ver más
               </button>
             </div>

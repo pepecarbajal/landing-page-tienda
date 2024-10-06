@@ -19,7 +19,7 @@ const Header = () => {
       <div className="flex items-center justify-between mx-4">
         <img src={logo} alt="Logo" className="h-16 ml-5" />
         
-        <nav className="hidden md:flex items-center justify-center space-x-8">
+        <nav className="hidden md:flex mr-8 items-center justify-center space-x-8">
           <button className="text-gray-900 hover:text-gray-1500 text-lg">Contáctame</button>
           <button className="text-gray-900 hover:text-gray-1500 text-lg">Sobre mí</button>
           <button className="text-gray-900 hover:text-gray-1500 text-lg">Productos</button>
