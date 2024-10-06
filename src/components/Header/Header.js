@@ -20,9 +20,11 @@ const Header = () => {
         <img src={logo} alt="Logo" className="h-16 ml-5" />
         
         <nav className="hidden md:flex mr-8 items-center justify-center space-x-8">
-          <button className="text-gray-900 hover:text-gray-1500 text-lg">Contáctame</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-lg">Sobre mí</button>
-          <button className="text-gray-900 hover:text-gray-1500 text-lg">Productos</button>
+          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Inicio</button>
+          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Tienda</button>
+          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Acerca de</button>
+          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Contacto</button>
+          <button className="text-gray-900 hover:text-gray-1500 text-2xl">Iniciar Sesión</button>
         </nav>
 
         <button 
@@ -34,10 +36,12 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        <nav className="absolute top-full left-0 right-0 h-screen bg-white shadow-lg z-50 flex flex-col items-center py-4">
-          <button className="text-gray-600 hover:text-gray-900 text-lg mb-2">Contáctame</button>
-          <button className="text-gray-600 hover:text-gray-900 text-lg mb-2">Sobre mí</button>
-          <button className="text-gray-600 hover:text-gray-900 text-lg mb-2">Productos</button>
+        <nav className={`absolute top-full left-0 right-0 h-screen bg-yellow-400 shadow-lg z-50 flex flex-col items-center py-4`}>
+          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Inicio</button>
+          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Tienda</button>
+          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Acerca de</button>
+          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Contacto</button>
+          <button className="text-gray-600 hover:text-gray-900 text-5xl mb-4">Iniciar Sesión</button>
           {/* Si no hay más botones, puedes agregar un espacio vacío para ocupar el resto de la altura */}
           <div className="flex-grow"></div>
         </nav>

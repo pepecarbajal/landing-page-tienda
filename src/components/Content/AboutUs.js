@@ -1,27 +1,24 @@
-// AboutUs.js
 import React from 'react';
-import heladoImage from './fondo.png';
+import heladoImage from './img/imgcasa.jpeg'; // Asegúrate de que esta imagen esté en la ruta correcta
+import './css/styles.css';
 
 const AboutUs = () => {
   return (
-    <section  id="about" className="py-20 bg-gray-100">
+    <section id="about" className="min-h-screen py-20 bg-transparent"> {/* Cambiado h-screen por min-h-screen */}
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <img src={heladoImage} alt="Nuestros helados" className="rounded-lg shadow-lg" />
-          </div>
-          <div className="md:w-1/2 md:pl-12">
-            <h2 className="text-3xl font-bold mb-6">Nuestra Historia</h2>
-            <p className="text-gray-600 mb-4">
-              HAME ha sido sinónimo de helados y paletas de alta calidad en Chilpancingo. Con  recetas tradicionales y sabores auténticos.
-            </p>
-            <p className="text-gray-600 mb-4">
-              Utilizamos solo los ingredientes más frescos y naturales para crear nuestros deliciosos helados y paletas.
-            </p>
-            <button className="bg-primary text-white py-2 px-6 rounded-full hover:bg-primary-dark transition duration-300">
-              Conoce Nuestra Historia
-            </button>
-          </div>
+        <div className="flex flex-col items-center">
+          {/* Encabezado */}
+          <h2 className="text-5xl font-bold mb-6 text-center">Sobre HAME</h2>
+          <p className="text-gray-600 mb-4 text-lg text-center">
+            HAME es conocido por ofrecer helados y paletas de la más alta calidad. Nos enorgullecemos de utilizar recetas tradicionales y ofrecer sabores auténticos que deleitan a todos.
+          </p>
+         
+          {/* Imagen redondeada */}
+          <img
+            src={heladoImage}
+            alt="Nuestros helados"
+            className="rounded-t-full shadow-lg w-full h-auto max-w-xs md:max-w-md mt-10" // Ajusta el tamaño aquí
+          />
         </div>
       </div>
     </section>

@@ -1,0 +1,31 @@
+/* styles.css */
+body {
+	background: linear-gradient(-55deg, #ff1e1e 40%, #ebff37, #ff0000, #ffff00); /* Cambié a rojo (#ff0000) y amarillo (#ffff00) */
+	background-size: 300% 300%;
+	-webkit-animation: gradient 8s ease infinite;
+	        animation: gradient 8s ease infinite;
+}
+
+@-webkit-keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
