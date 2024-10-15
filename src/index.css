@@ -22,3 +22,9 @@ html, body {
   max-height: 100%;
   object-fit: contain;
 }
+
+*
+ {
+  font-family: "Edu AU VIC WA NT Dots", cursive;
+  
+}

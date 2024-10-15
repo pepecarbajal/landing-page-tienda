@@ -1,16 +1,47 @@
-import React, { useState } from 'react'
-import { X } from 'lucide-react'
+import React, { useState } from 'react';
+import { X } from 'lucide-react';
 
 const Register = ({ onLoginClick, onClose }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Lógica de registro
-    console.log('Register attempt with:', email, password, confirmPassword)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    // Validar que las contraseñas coincidan
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      // Realizar la solicitud de registro
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al registrar');
+      }
+
+      setSuccess('Registro exitoso. Ahora puedes iniciar sesión.');
+      // Opcionalmente, puedes cerrar el modal o redirigir al usuario.
+
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -25,6 +56,10 @@ const Register = ({ onLoginClick, onClose }) => {
         </button>
 
         <h2 className="text-2xl font-bold mb-4 text-center">Crear una cuenta en HAME</h2>
+
+        {error && <p className="text-red-600 text-center">{error}</p>}
+        {success && <p className="text-green-600 text-center">{success}</p>}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
@@ -70,7 +105,7 @@ const Register = ({ onLoginClick, onClose }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
