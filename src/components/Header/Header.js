@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react'; // Importa los íconos
 import logo from './clogo.png';
-import AccountInfo from '../Content/AccountInfo'; // Importa el nuevo componente
+import AccountInfo from '../Content/AccountInfo';
+import Cart from '../Content/Cart'; // Importa el componente de carrito
 
-export default function Header({ onLoginClick, onNavigation }) {
+export default function Header({ onLoginClick, onNavigation, cartItems }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerHover, setHeaderHover] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false); // Estado para el carrito
 
   const menuItems = [
     { name: 'Inicio', id: 'inicio' },
@@ -22,7 +24,11 @@ export default function Header({ onLoginClick, onNavigation }) {
 
   const handleNavClick = (id) => {
     onNavigation(id);
-    setMenuOpen(false);
+    setMenuOpen(false); // Cierra el menú después de hacer clic
+  };
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen); // Cambia el estado del carrito
   };
 
   return (
@@ -48,17 +54,29 @@ export default function Header({ onLoginClick, onNavigation }) {
               {item.name}
             </button>
           ))}
-          {/* Usa el componente AccountInfo aquí */}
+
           <AccountInfo isAuthenticated={isAuthenticated} />
+
+          {/* Botón del carrito */}
+          <div className="relative ml-4">
+            <button onClick={toggleCart} className="flex items-center">
+              <ShoppingCart className="h-6 w-6 text-gray-900" />
+              {/* Muestra el número de artículos en el carrito */}
+              {cartItems.length > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
+          </div>
         </nav>
 
-        {/* Agrupar íconos de cuenta y hamburguesa */}
         <div className="flex items-center md:hidden">
           <AccountInfo isAuthenticated={isAuthenticated} />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-600 hover:text-gray-900 flex items-center relative ml-2" // Agregamos margen izquierdo aquí
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            className="text-gray-600 hover:text-gray-900 flex items-center relative ml-2"
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -89,6 +107,9 @@ export default function Header({ onLoginClick, onNavigation }) {
           )}
         </nav>
       )}
+
+      {/* Componente del carrito */}
+      {cartOpen && <Cart cartItems={cartItems} onClose={() => setCartOpen(false)} />}
     </header>
   );
 }
