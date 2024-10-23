@@ -41,8 +41,24 @@ export default function App() {
   };
 
   const handleAddToCart = (product) => {
-    setCartItems([...cartItems, product]); // Agregar producto al carrito
+    const existingProduct = cartItems.find(item => item.id === product.id);
+  
+    if (existingProduct) {
+      // Update the quantity and recalculate the price for the existing product
+      setCartItems(cartItems.map(item =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1, totalPrice: (item.quantity + 1) * item.price }
+          : item
+      ));
+    } else {
+      // Add the product with quantity 1 and initial total price calculation
+      setCartItems([...cartItems, { ...product, quantity: 1, totalPrice: product.price }]);
+    }
   };
+  
+  
+  
+  
 
   const renderContent = () => {
     switch (currentPage) {
@@ -59,7 +75,7 @@ export default function App() {
           </>
         );
       case 'tienda':
-        return <ProductPage onAddToCart={handleAddToCart} />; // También pasar a ProductPage
+        return <ProductPage onAddToCart={handleAddToCart} onNavigation={handleNavigation} />; // Pasa onNavigation a ProductPage
       case 'acerca':
         return <div>Acerca de Content</div>;
       case 'contacto':

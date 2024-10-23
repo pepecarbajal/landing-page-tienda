@@ -25,6 +25,8 @@ html, body {
 
 *
  {
-  font-family: "Edu AU VIC WA NT Dots", cursive;
+  font-family: "Arima", system-ui;
+  font-optical-sizing: auto;
+  
   
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
   return (
@@ -7,10 +7,12 @@ export default function CategorySelector({ categories, selectedCategory, onSelec
         <div className="flex justify-end items-center h-16">
           <select 
             className="w-[180px] border border-gray-300 rounded-md px-3 py-2"
-            value={selectedCategory}
-            onChange={(e) => onSelectCategory(e.target.value)}
+            value={selectedCategory} // Muestra la categoría seleccionada
+            onChange={(e) => onSelectCategory(e.target.value)} // Actualiza la selección
           >
+            {/* Opción "Todas" como la opción predeterminada */}
             <option value="Todas">Todas</option>
+            {/* Mapeo de las categorías pasadas como props */}
             {categories.map(category => (
               <option key={category} value={category}>{category}</option>
             ))}
@@ -18,5 +20,5 @@ export default function CategorySelector({ categories, selectedCategory, onSelec
         </div>
       </div>
     </nav>
-  )
+  );
 }
