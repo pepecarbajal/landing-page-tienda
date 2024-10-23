@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -6,21 +6,41 @@ const Contact = () => {
     apellidos: '',
     correo: '',
     mensaje: ''
-  })
+  });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
-    }))
-  }
+    }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission logic here
-    console.log('Form submitted:', formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSuccessMessage('Formulario enviado correctamente');
+        setFormData({ nombre: '', apellidos: '', correo: '', mensaje: '' }); // Reinicia el formulario
+      } else {
+        setErrorMessage('Hubo un error al enviar el formulario');
+      }
+    } catch (error) {
+      setErrorMessage('Error al conectarse con el servidor');
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen pt-[150px]">
@@ -28,7 +48,7 @@ const Contact = () => {
       <div className="flex-1 overflow-auto bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Acerca de Nosotros</h2>
-          
+
           <div className="bg-white shadow-md rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">Ponte en contacto con nosotros.</h3>
             <p className="mb-2">hame131102@gmail.com</p>
@@ -102,10 +122,13 @@ const Contact = () => {
               </button>
             </div>
           </form>
+
+          {successMessage && <p className="text-green-500 text-center mt-4">{successMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
