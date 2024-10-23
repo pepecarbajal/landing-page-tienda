@@ -66,6 +66,7 @@ const Contact = () => {
                   type="text"
                   id="nombre"
                   name="nombre"
+                  requiredz
                   value={formData.nombre}
                   onChange={handleChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -79,6 +80,7 @@ const Contact = () => {
                   type="text"
                   id="apellidos"
                   name="apellidos"
+                  required
                   value={formData.apellidos}
                   onChange={handleChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
