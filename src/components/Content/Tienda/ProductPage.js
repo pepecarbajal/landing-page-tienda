@@ -1,5 +1,6 @@
 // src/Components/ProductPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {jwtDecode} from 'jwt-decode';
 import ProductList from './ProductList';
 import CategorySelector from './CategorySelector';
 import OfferTimer from './OfferTimer';
@@ -55,26 +56,58 @@ const categories = ["Dulce Invierno", "Explosión Tropical", "Toppings"];
 export default function ProductPage({ onAddToCart, onNavigation }) {
   const [selectedCategory, setSelectedCategory] = useState("Todas");
   const [cartItems, setCartItems] = useState([]); 
+  const [userId, setUserId] = useState(null); 
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setUserId(decoded.id || null); // Extrae el ID del usuario
+      } catch (error) {
+        console.error('Error decodificando el token:', error);
+        setUserId(null); // Maneja el estado de error
+      }
+    }
+  }, []);
   // Filtering the products based on selected category
   const filteredProducts = selectedCategory === "Todas"
     ? products 
     : products.filter(product => product.category === selectedCategory);
 
-  const addToCart = (product) => {
-    const exists = cartItems.find(item => item.id === product.id);
 
-    if (exists) {
-      setCartItems(cartItems.map(item =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1, totalPrice: (item.quantity + 1) * item.price }
-          : item
-      ));
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1, totalPrice: product.price }]);
-    }
-
-  };
+    const addToCart = async (product) => {
+      const exists = cartItems.find(item => item.productId === product.id); // Verifica si el artículo ya está en el carrito
+      const quantity = exists ? exists.quantity + 1 : 1; // Aumenta la cantidad si ya existe
+      const totalPrice = exists ? (exists.quantity + 1) * product.price : product.price; // Calcula el precio total
+    
+      // Actualiza el carrito
+      if (exists) {
+        setCartItems(cartItems.map(item =>
+          item.productId === product.id
+            ? { ...item, quantity, totalPrice } // Actualiza la cantidad y el precio total
+            : item
+        ));
+      } else {
+        setCartItems([...cartItems, { ...product, quantity, totalPrice }]); // Agrega el nuevo producto al carrito
+      }
+    
+      // Guarda en la base de datos
+      try {
+        await fetch('http://192.168.0.2:5000/api/cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, productId: product.id, quantity }) // Envía userId, productId y quantity
+        });
+      } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+      }
+    
+      console.log("Producto agregado o actualizado en el carrito:", product);
+    };
+    
 
   return (
     <div className="flex mt-20 flex-col">
