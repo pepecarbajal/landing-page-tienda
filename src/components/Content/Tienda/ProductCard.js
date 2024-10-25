@@ -7,23 +7,23 @@ export default function ProductCard({ product, onAddToCart }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsFading(true); // Empieza la transición de desvanecimiento
+      setIsFading(true);
 
       setTimeout(() => {
-        setCurrentImageIndex(prevIndex => (prevIndex + 1) % product.images.length); // Cambia la imagen
-        setIsFading(false); // Termina la transición de desvanecimiento
-      }, 500); // Duración del fade out
+        setCurrentImageIndex(prevIndex => (prevIndex + 1) % product.images.length);
+        setIsFading(false); 
+      }, 500);
 
-    }, 3000); // Cambia cada 3 segundos
+    }, 3000);
 
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, [product.images.length]);
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
       <div className="relative aspect-[3/4] w-full">
         <img
-          src={product.images[currentImageIndex]} // Usa la imagen según el índice actual
+          src={product.images[currentImageIndex]}
           alt={product.name}
           className={`object-cover w-full h-full transition-opacity duration-500 ${isFading ? 'opacity-0' : 'opacity-100'}`} // Efecto de opacidad
         />
@@ -40,8 +40,8 @@ export default function ProductCard({ product, onAddToCart }) {
           <div className="flex items-baseline">
             {product.discountPrice ? (
               <>
-                <span className="text-lg font-bold text-[#ffa43a]">${product.discountPrice.toFixed(2)}</span>
-                <span className="ml-2 text-sm text-gray-500 line-through">${product.price.toFixed(2)}</span>
+                <span className="text-lg font-bold text-[#000]">${product.discountPrice.toFixed(2)}</span>
+                <span className="ml-2 text-sm text-red-500 line-through">${product.price.toFixed(2)}</span>
               </>
             ) : (
               <span className="text-lg font-bold text-[#ffa43a]">${product.price.toFixed(2)}</span>
@@ -50,10 +50,10 @@ export default function ProductCard({ product, onAddToCart }) {
           <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-full text-gray-600">{product.category}</span>
         </div>
         <button 
-          className="w-full bg-[#ffa43a] hover:bg-[#ff8c00] text-white px-4 py-2 rounded-md"
+          className="w-full font-bold bg-[#ff4427] hover:bg-[#ff2200] text-white px-4 py-2 rounded-md"
           onClick={() => onAddToCart(product)}
         >
-          <ShoppingCart className="mr-2 h-4 w-4" /> Agregar al carrito
+          <ShoppingCart className="mr-2 h-4 w-6" /> Agregar al carrito
         </button>
       </div>
     </div>

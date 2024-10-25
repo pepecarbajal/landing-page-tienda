@@ -1,10 +1,10 @@
 // HameStore.js
 import React from 'react';
-import './css/styles.css'; // Asegúrate de que la ruta sea correcta
-import img1 from './img/collage1.jpeg';
-import img2 from './img/collage2.jpeg';
-import img3 from './img/collage3.jpeg';
-import img4 from './img/imgcasa.jpeg';
+import '../css/styles.css'; // Asegúrate de que la ruta sea correcta
+import img1 from '../img/collage1.jpeg';
+import img2 from '../img/collage2.jpeg';
+import img3 from '../img/collage3.jpeg';
+import img4 from '../img/imgcasa.jpeg';
 
 const HameStore = () => {
   return (

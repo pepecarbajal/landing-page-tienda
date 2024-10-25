@@ -1,10 +1,10 @@
 // Productos.js
 import React, { useState } from 'react';
-import tropical from './img/tropical.jpeg';
-import invierno from './img/invierno.jpeg';
-import hamebox from './img/hamebox.jpeg';
-import arrowLeft from './img/flecha.png';
-import arrowRight from './img/flecha.png';
+import tropical from '../img/tropical.jpeg';
+import invierno from '../img/invierno.jpeg';
+import hamebox from '../img/hamebox.jpeg';
+import arrowLeft from '../img/flecha.png';
+import arrowRight from '../img/flecha.png';
 
 const products = [
   { id: 1, name: 'Hame Box', price: '$10.00', image: hamebox },

@@ -55,9 +55,10 @@ export default function Header({ onLoginClick, onNavigation, cartItems }) {
               {item.name}
             </button>
           ))}
-          
+
+          {/* Botón de cuenta (solo para pantallas grandes) */}
           <AccountInfo isAuthenticated={isAuthenticated} />
-          
+
           {/* Botón del carrito */}
           <div className="relative ml-4">
             <button onClick={toggleCart} className="flex items-center">
@@ -70,24 +71,26 @@ export default function Header({ onLoginClick, onNavigation, cartItems }) {
               )}
             </button>
           </div>
-
-          {/* Opción de iniciar sesión visible en desktop */}
-          {!isAuthenticated && (
-            <button 
-              onClick={onLoginClick} 
-              className="text-gray-900 hover:text-gray-600 text-2xl"
-            >
-              Iniciar Sesión
-            </button>
-          )}
         </nav>
 
         {/* Botón para el menú móvil */}
         <div className="flex items-center md:hidden">
-          <AccountInfo isAuthenticated={isAuthenticated} />
+          {/* Botón del carrito para pantallas móviles */}
+          <div className="relative mr-4">
+            <button onClick={toggleCart} className="flex items-center">
+              <ShoppingCart className="h-6 w-6 text-gray-900" />
+              {cartItems.length > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* Menú hamburguesa */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-600 hover:text-gray-900 flex items-center relative ml-2"
+            className="text-gray-600 hover:text-gray-900 flex items-center relative"
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -107,6 +110,10 @@ export default function Header({ onLoginClick, onNavigation, cartItems }) {
               {item.name}
             </button>
           ))}
+
+          {/* Muestra el botón de sesión en el menú móvil */}
+          <AccountInfo isAuthenticated={isAuthenticated} />
+
           {!isAuthenticated && (
             <button 
               onClick={() => {
@@ -118,18 +125,6 @@ export default function Header({ onLoginClick, onNavigation, cartItems }) {
               Iniciar Sesión
             </button>
           )}
-
-          {/* Muestra el carrito en el menú móvil */}
-          <div className="relative mt-6">
-            <button onClick={toggleCart} className="flex items-center text-gray-900 text-5xl">
-              <ShoppingCart className="h-8 w-8" />
-              {cartItems.length > 0 && (
-                <span className="absolute top-0 right-0 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItems.length}
-                </span>
-              )}
-            </button>
-          </div>
         </nav>
       )}
 

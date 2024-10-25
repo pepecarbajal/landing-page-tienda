@@ -1,7 +1,7 @@
 import React from 'react';
-import './css/styles.css'; // Asegúrate de que la ruta sea correcta
-import instagramLogo from './img/instagram.png'; // Asegúrate de que esta imagen esté en la ruta correcta
-import image from './img/qr.jpeg'; // Cambia esto a la imagen que desees usar
+import '../css/styles.css'; // Asegúrate de que la ruta sea correcta
+import instagramLogo from '../img/instagram.png'; // Asegúrate de que esta imagen esté en la ruta correcta
+import image from '../img/qr.jpeg'; // Cambia esto a la imagen que desees usar
 
 const Siguenos = () => {
   return (

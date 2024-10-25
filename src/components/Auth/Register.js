@@ -21,7 +21,7 @@ const Register = ({ onLoginClick, onClose }) => {
 
     try {
       // Realizar la solicitud de registro
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('http://192.168.0.2:5000/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

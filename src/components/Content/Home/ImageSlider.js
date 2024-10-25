@@ -1,13 +1,11 @@
 // ImageSlider.js
 import React, { useState, useEffect } from 'react';
-import img1 from './img/i1.jpeg';
-import img2 from './img/i2.jpeg';
-import img3 from './img/i3.jpeg';
+import img1 from '../img/img1.jpeg';
+import img2 from '../img/img2.jpeg';
 
+const images = [img1, img2];
 
-const images = [img1, img2, img3];
-
-const ImageSlider2 = () => {
+const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -19,15 +17,15 @@ const ImageSlider2 = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-rojo">
+    <div className="relative w-full h-screen flex items-center justify-center bg-white">
       <img
         src={images[currentIndex]}
         alt="Imagen deslizante"
-        className="w-[800px] mx-auto rounded-lg  transition-opacity duration-1000 ease-in-out"
+        className="w-[800px] mx-auto transition-opacity duration-1000 ease-in-out"
         key={currentIndex}
       />
     </div>
   );
 };
 
-export default ImageSlider2;
+export default ImageSlider;

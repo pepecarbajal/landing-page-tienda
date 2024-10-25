@@ -1,6 +1,6 @@
 import React from 'react';
-import heladoImage from './img/imgcasa.jpeg'; // Asegúrate de que esta imagen esté en la ruta correcta
-import './css/styles.css';
+import heladoImage from '../img/imgcasa.jpeg'; // Asegúrate de que esta imagen esté en la ruta correcta
+import '../css/styles.css';
 
 const AboutUs = () => {
   return (
