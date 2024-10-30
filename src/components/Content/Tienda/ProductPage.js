@@ -55,75 +55,130 @@ const categories = ["Dulce Invierno", "Explosión Tropical", "Toppings"];
 
 export default function ProductPage({ onAddToCart, onNavigation }) {
   const [selectedCategory, setSelectedCategory] = useState("Todas");
-  const [cartItems, setCartItems] = useState([]); 
-  const [userId, setUserId] = useState(null); 
+  const [cartItems, setCartItems] = useState([]);
+  const [userId, setUserId] = useState(null);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false); // New state for showing favorites
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        setUserId(decoded.id || null); // Extrae el ID del usuario
+        setUserId(decoded.id || null);
       } catch (error) {
         console.error('Error decodificando el token:', error);
-        setUserId(null); // Maneja el estado de error
+        setUserId(null);
       }
     }
   }, []);
-  // Filtering the products based on selected category
-  const filteredProducts = selectedCategory === "Todas"
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
 
+  useEffect(() => {
+    if (userId) {
+      fetchFavorites(userId);
+    }
+  }, [userId]);
 
-    const addToCart = async (product) => {
-      const exists = cartItems.find(item => item.productId === product.id); // Verifica si el artículo ya está en el carrito
-      const quantity = exists ? exists.quantity + 1 : 1; // Aumenta la cantidad si ya existe
-      const totalPrice = exists ? (exists.quantity + 1) * product.price : product.price; // Calcula el precio total
-    
-      // Actualiza el carrito
-      if (exists) {
-        setCartItems(cartItems.map(item =>
-          item.productId === product.id
-            ? { ...item, quantity, totalPrice } // Actualiza la cantidad y el precio total
-            : item
-        ));
-      } else {
-        setCartItems([...cartItems, { ...product, quantity, totalPrice }]); // Agrega el nuevo producto al carrito
-      }
-    
-      // Guarda en la base de datos
-      try {
-        await fetch('http://192.168.0.2:5000/api/cart', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ userId, productId: product.id, quantity }) // Envía userId, productId y quantity
-        });
-      } catch (error) {
-        console.error('Error al agregar al carrito:', error);
-      }
-    
-      console.log("Producto agregado o actualizado en el carrito:", product);
-    };
-    
+  const fetchFavorites = async (userId) => {
+    try {
+      const response = await fetch(`http://192.168.0.2:5000/api/favorites/${userId}`);
+      const data = await response.json();
+
+      const favoriteProductIds = data.map(favorite => favorite.productId);
+      const favoriteList = products.filter(product => favoriteProductIds.includes(product.id));
+      setFavoriteProducts(favoriteList);
+    } catch (error) {
+      console.error('Error al obtener favoritos:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      const fetchCartItems = async () => {
+        try {
+          const response = await fetch(`http://192.168.0.2:5000/api/cart?userId=${userId}`);
+          const data = await response.json();
+
+          setCartItems(
+            data.map(item => {
+              const product = products.find(p => p.id === item.productId);
+              return {
+                productId: item.productId,
+                quantity: item.quantity,
+                name: product ? product.name : "Producto desconocido",
+                totalPrice: item.quantity * (product ? product.price : 0)
+              };
+            })
+          );
+        } catch (error) {
+          console.error('Error al obtener artículos del carrito:', error);
+        }
+      };
+      fetchCartItems();
+    }
+  }, [userId]);
+
+  const addToCart = async (product) => {
+    const exists = cartItems.find(item => item.productId === product.id);
+    const quantity = exists ? exists.quantity + 1 : 1;
+    const totalPrice = exists ? (exists.quantity + 1) * product.price : product.price;
+
+    if (exists) {
+      setCartItems(cartItems.map(item =>
+        item.productId === product.id
+          ? { ...item, quantity, totalPrice }
+          : item
+      ));
+    } else {
+      setCartItems([...cartItems, { ...product, quantity, totalPrice }]);
+    }
+
+    try {
+      await fetch('http://192.168.0.2:5000/api/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, productId: product.id, quantity })
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
+
+    console.log("Producto agregado o actualizado en el carrito:", product);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const toggleShowFavorites = () => {
+    setShowFavorites(prev => !prev);
+  };
+
+  const filteredProducts = showFavorites
+    ? favoriteProducts 
+    : products.filter(product => selectedCategory === "Todas" || product.category === selectedCategory); 
 
   return (
-    <div className="flex mt-20 flex-col">
-      <Header 
-        cartItems={cartItems} 
-        onAddToCart={addToCart} 
+    <div>
+      <Header
+        cartItems={cartItems}
+        onAddToCart={addToCart}
         onNavigation={onNavigation}
       />
-     <CategorySelector 
-  categories={categories} 
-  selectedCategory={selectedCategory} // Pasa la categoría seleccionada
-  onSelectCategory={setSelectedCategory} // Pasa la función para cambiar de categoría
-/>
-
-      <OfferTimer />
-      <ProductList products={filteredProducts} onAddToCart={addToCart} />
+      <div>
+        <CategorySelector
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={handleCategoryChange}
+          onToggleFavorites={toggleShowFavorites} // Pass the toggle function
+          showFavorites={showFavorites} // Pass the showFavorites state
+        />
+        <OfferTimer />
+        <ProductList products={filteredProducts} onAddToCart={addToCart} />
+      </div>
     </div>
   );
 }
+
