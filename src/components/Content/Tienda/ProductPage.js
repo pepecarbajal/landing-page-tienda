@@ -121,32 +121,33 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
   const addToCart = async (product) => {
     const exists = cartItems.find(item => item.productId === product.id);
     const quantity = exists ? exists.quantity + 1 : 1;
-    const totalPrice = exists ? (exists.quantity + 1) * product.price : product.price;
+    const totalPrice = quantity * product.price; // Update totalPrice calculation
 
     if (exists) {
-      setCartItems(cartItems.map(item =>
-        item.productId === product.id
-          ? { ...item, quantity, totalPrice }
-          : item
-      ));
+        setCartItems(cartItems.map(item =>
+            item.productId === product.id
+                ? { ...item, quantity, totalPrice }
+                : item
+        ));
     } else {
-      setCartItems([...cartItems, { ...product, quantity, totalPrice }]);
+        setCartItems([...cartItems, { productId: product.id, quantity, name: product.name, totalPrice }]);
     }
 
     try {
-      await fetch('http://192.168.0.2:5000/api/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId, productId: product.id, quantity })
-      });
+        await fetch('http://192.168.0.2:5000/api/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId, productId: product.id, quantity })
+        });
     } catch (error) {
-      console.error('Error al agregar al carrito:', error);
+        console.error('Error al agregar al carrito:', error);
     }
 
     console.log("Producto agregado o actualizado en el carrito:", product);
-  };
+};
+
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);

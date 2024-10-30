@@ -90,7 +90,7 @@ export default function ProductCard({ product, onAddToCart }) {
           onClick={toggleFavorite}
           className="absolute top-2 right-2 rounded-full bg-white/80 hover:bg-white p-2"
         >
-          <Heart className={`h-4 w-4 ${isFavorite ? 'text-red-500' : 'text-[#ffa43a]'}`} />
+          <Heart className={`h-4 w-4 ${isFavorite ? 'text-red-500' : 'text-[#ffa43a]'}`} fill={isFavorite ? 'currentColor' : 'none'} />
           <span className="sr-only">{isFavorite ? 'Remove from favorites' : 'Add to favorites'}</span>
         </button>
       </div>
