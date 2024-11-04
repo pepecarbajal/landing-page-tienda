@@ -113,7 +113,7 @@ export default function ProductCard({ product, onAddToCart }) {
           className="w-full font-bold bg-[#ff4427] hover:bg-[#ff2200] text-white px-4 py-2 rounded-md"
           onClick={() => onAddToCart(product)}
         >
-          <ShoppingCart className="mr-2 h-4 w-6" /> Add to cart
+          <ShoppingCart className="mr-2 h-4 w-6" /> Agregar al Carrito
         </button>
       </div>
     </div>

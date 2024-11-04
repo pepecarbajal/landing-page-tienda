@@ -16,12 +16,7 @@ export default function CategorySelector({ categories, selectedCategory, onSelec
               <option key={category} value={category}>{category}</option>
             ))}
           </select>
-          <button 
-            onClick={onToggleFavorites} 
-            className={`ml-4 px-4 py-2 rounded-md text-white ${showFavorites ? 'bg-red-600' : 'bg-red-500'}`}
-          >
-            {showFavorites ? "Productos" : "Favoritos"}
-          </button>
+          
         </div>
       </div>
     </nav>
