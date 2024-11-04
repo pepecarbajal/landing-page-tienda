@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import CreditCardForm from './CreditCardForm.js'; // Asegúrate de que la ruta sea correcta
+import CreditCardForm from './CreditCardForm'; // Asegúrate de que la ruta sea correcta
 
 export default function Cart({ cartItems, onClose }) {
   const [isCheckout, setIsCheckout] = useState(false); // Estado para controlar la vista de checkout
+  
 
   const handleBuyNow = () => {
-    console.log("Buy Now clicked"); // Debug log
     setIsCheckout(true); // Cambiar a la vista de checkout
   };
 
@@ -15,7 +15,11 @@ export default function Cart({ cartItems, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white shadow-lg rounded-md p-6 w-96 max-h-[90vh] overflow-y-auto">
         {isCheckout ? (
-          <CreditCardForm totalAmount={totalAmount} onClose={onClose} />
+          <CreditCardForm 
+            totalAmount={totalAmount} 
+            onClose={onClose} 
+            cartItems={cartItems} 
+          />
         ) : (
           <>
             <div className="flex justify-between items-center mb-4">

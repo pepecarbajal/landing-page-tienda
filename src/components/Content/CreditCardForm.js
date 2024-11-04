@@ -1,21 +1,76 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function CreditCardForm({ totalAmount, onClose }) {
+export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [showThankYou, setShowThankYou] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
-  const handleSubmit = (e) => {
+  // Obtener userId y userEmail de localStorage al cargar el componente
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Suponiendo que el token está aquí
+    if (token) {
+      try {
+        const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica el JWT
+        setUserId(decodedToken.id); // Asegúrate de que el nombre del campo sea correcto
+        setUserEmail(decodedToken.email); // Asegúrate de que el nombre del campo sea correcto
+      } catch (error) {
+        console.error('Error decoding token:', error); // Manejo de errores
+      }
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowThankYou(true);
-    setTimeout(() => {
-      onClose();
-    }, 3000); // Close after 3 seconds
-  };
+
+    // Log cart items, user ID, and user email
+    console.log('Cart Items:', cartItems);
+    console.log('User ID:', userId);
+    console.log('User Email:', userEmail);
+
+    // Enviar datos de compra al servidor
+    const purchaseData = {
+        userId,
+        userEmail,
+        cartItems,
+        totalAmount, // Asegúrate de que `totalAmount` sea el total de la compra
+    };
+    console.log(purchaseData)
+
+    try {
+        const response = await fetch('http://192.168.0.2:5000/api/compras', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            body: JSON.stringify(purchaseData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al guardar la compra');
+        }
+
+        const data = await response.json();
+        console.log(data.message); // Puedes manejar el mensaje de éxito aquí
+
+        setShowThankYou(true);
+        setTimeout(() => {
+            onClose();
+        }, 3000); // Cerrar después de 3 segundos
+
+    } catch (error) {
+      console.error('Error sending purchase data:', error);
+      // Aquí puedes manejar el error, mostrando un mensaje al usuario
+      alert('Ocurrió un error al procesar tu compra. Por favor, intenta de nuevo.');
+  }
+  
+};
+
 
   const handleExpiryDateChange = (e) => {
     const value = e.target.value.replace(/\D/g, '');
