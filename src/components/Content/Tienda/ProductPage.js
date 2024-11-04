@@ -81,7 +81,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
 
   const fetchFavorites = async (userId) => {
     try {
-      const response = await fetch(`http://192.168.0.2:5000/api/favorites/${userId}`);
+      const response = await fetch(`https://serverhame.onrender.com/api/favorites/${userId}`);
       const data = await response.json();
 
       const favoriteProductIds = data.map(favorite => favorite.productId);
@@ -96,7 +96,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
     if (userId) {
       const fetchCartItems = async () => {
         try {
-          const response = await fetch(`http://192.168.0.2:5000/api/cart?userId=${userId}`);
+          const response = await fetch(`https://serverhame.onrender.com/api/cart?userId=${userId}`);
           const data = await response.json();
 
           setCartItems(
@@ -134,7 +134,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
     }
 
     try {
-        await fetch('http://192.168.0.2:5000/api/cart', {
+        await fetch('https://serverhame.onrender.com/api/cart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -42,7 +42,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
     console.log(purchaseData)
 
     try {
-        const response = await fetch('http://192.168.0.2:5000/api/compras', {
+        const response = await fetch('https://serverhame.onrender.com/api/compras', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

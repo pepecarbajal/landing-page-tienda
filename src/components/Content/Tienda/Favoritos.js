@@ -59,7 +59,7 @@ export default function Favoritos() {
       const decodedToken = jwt_decode(token)
       const userId = decodedToken.userId
 
-      const response = await fetch(`http://192.168.0.2:5000/api/favorites/${userId}`)
+      const response = await fetch(`https://serverhame.onrender.com/api/favorites/${userId}`)
       if (!response.ok) throw new Error('Failed to fetch favorites')
 
       const data = await response.json()
@@ -77,7 +77,7 @@ export default function Favoritos() {
       const decodedToken = jwt_decode(token)
       const userId = decodedToken.userId
 
-      const response = await fetch(`http://192.168.0.2:5000/api/favorites/${userId}/${productId}`, {
+      const response = await fetch(`https://serverhame.onrender.com/api/favorites/${userId}/${productId}`, {
         method: 'DELETE',
       })
       if (!response.ok) throw new Error('Failed to remove favorite')
