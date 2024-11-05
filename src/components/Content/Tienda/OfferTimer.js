@@ -30,7 +30,7 @@ const OfferTimer = () => {
   return (
     <div
       onClick={() => setIsExpanded(!isExpanded)}
-      className={`fixed left-0 top-1/4 -translate-y-1/2 bg-[#ff2222] text-white rounded-r-lg shadow-lg z-50 transition-transform duration-300 ease-in-out cursor-pointer ${
+      className={`fixed left-0 top-1/4 -translate-y-1/2 bg-rojo text-white rounded-r-lg shadow-lg z-50 transition-transform duration-300 ease-in-out cursor-pointer ${
         isExpanded ? 'translate-x-0' : '-translate-x-[calc(100%-3rem)]'
       }`}
       style={{ width: isExpanded ? 'auto' : '3.5rem' }} // Ajustar el ancho al estar colapsado

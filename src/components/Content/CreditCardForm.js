@@ -47,7 +47,6 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            
             body: JSON.stringify(purchaseData),
         });
 
@@ -70,7 +69,6 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
   }
   
 };
-
 
   const handleExpiryDateChange = (e) => {
     const value = e.target.value.replace(/\D/g, '');
@@ -101,9 +99,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
         >
           {!showThankYou ? (
             <>
-              <h2 className="text-2xl font-semibold mb-4">Pagar ${totalAmount.toFixed(2)}</h2>
-
-              <div className="mb-6 bg-gradient-to-r from-[#ff7222] to-[#ff4325] p-4 rounded-lg shadow-lg text-white h-[13em]">
+              <div className="mb-2 bg-gradient-to-r from-[#ff7222] to-[#ff4325] p-4 rounded-lg shadow-lg text-white h-[10em]">
                 <div className="mb-4">
                   <div className="text-xl mt-5 font-mono">{cardNumber || '•••• •••• •••• ••••'}</div>
                 </div>
@@ -119,7 +115,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 mt-4"> {/* Añadir margin-top aquí */}
                 <div>
                   <label htmlFor="cardNumber" className="block mb-1">Número de Tarjeta</label>
                   <input
@@ -138,7 +134,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
                   <input
                     id="cardName"
                     type="text"
-                    placeholder="Hazel Nose Que"
+                    placeholder="Nombre Apellidos"
                     value={cardName}
                     onChange={(e) => setCardName(e.target.value)}
                     required
@@ -177,8 +173,8 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
                   <button type="button" onClick={onClose} className="border border-gray-300 text-gray-700 p-2 rounded hover:bg-gray-200">
                     Cancelar
                   </button>
-                  <button type="submit" className="bg-red-500 text-white p-2 rounded hover:bg-red-600">
-                    Pagar
+                  <button type="submit" className="bg-rojo text-white p-2 rounded hover:bg-red-600">
+                    Pagar ${totalAmount.toFixed(2)}
                   </button>
                 </div>
               </form>
@@ -190,7 +186,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
               transition={{ duration: 0.5 }}
               className="text-center py-10"
             >
-              <h2 className="text-3xl font-bold text-red-600 mb-4">¡Gracias por comprar en HAME!</h2>
+              <h2 className="text-3xl font-bold text-rojo mb-4">¡Gracias por comprar en HAME!</h2>
               <p className="text-lg text-gray-600">Su pago ha sido procesado con éxito.</p>
             </motion.div>
           )}

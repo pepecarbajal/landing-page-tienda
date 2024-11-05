@@ -106,7 +106,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
                 productId: item.productId,
                 quantity: item.quantity,
                 name: product ? product.name : "Producto desconocido",
-                totalPrice: item.quantity * (product ? product.price : 0)
+                totalPrice: item.quantity * (product ? product.discountPrice : 0)
               };
             })
           );
@@ -121,7 +121,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
   const addToCart = async (product) => {
     const exists = cartItems.find(item => item.productId === product.id);
     const quantity = exists ? exists.quantity + 1 : 1;
-    const totalPrice = quantity * product.price; // Update totalPrice calculation
+    const totalPrice = quantity * product.discountPrice; // Update totalPrice calculation
 
     if (exists) {
         setCartItems(cartItems.map(item =>

@@ -110,7 +110,7 @@ export default function ProductCard({ product, onAddToCart }) {
       </div>
       <div className="p-4 pt-0">
         <button 
-          className="w-full text-sm font-bold bg-[#ff4427] hover:bg-[#ff2200] text-white py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center"
+          className="w-full text-sm font-bold bg-rojo hover:bg-naranja text-white py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center"
           onClick={() => onAddToCart(product)}
         >
           <ShoppingCart className="mr-2 h-3 w-3" /> Agregar al Carrito
