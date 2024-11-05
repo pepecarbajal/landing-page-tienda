@@ -8,8 +8,8 @@ const AboutUs = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
           {/* Encabezado */}
-          <h2 className="text-5xl font-bold mb-6 text-center">Sobre HAME</h2>
-          <p className="text-gray-600 mb-4 text-lg text-center">
+          <h2 className="text-5xl text-white font-bold mb-6 text-center">Sobre HAME</h2>
+          <p className="text-white mb-4 text-lg text-center">
             HAME es conocido por ofrecer helados y paletas de la más alta calidad. Nos enorgullecemos de utilizar recetas tradicionales y ofrecer sabores auténticos que deleitan a todos.
           </p>
          

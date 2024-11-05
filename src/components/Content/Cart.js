@@ -3,7 +3,7 @@ import CreditCardForm from './CreditCardForm'; // Asegúrate de que la ruta sea 
 
 export default function Cart({ cartItems, onClose }) {
   const [isCheckout, setIsCheckout] = useState(false); // Estado para controlar la vista de checkout
-  
+
 
   const handleBuyNow = () => {
     setIsCheckout(true); // Cambiar a la vista de checkout
@@ -15,15 +15,15 @@ export default function Cart({ cartItems, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white shadow-lg rounded-md p-6 w-96 max-h-[90vh] overflow-y-auto">
         {isCheckout ? (
-          <CreditCardForm 
-            totalAmount={totalAmount} 
-            onClose={onClose} 
-            cartItems={cartItems} 
+          <CreditCardForm
+            totalAmount={totalAmount}
+            onClose={onClose}
+            cartItems={cartItems}
           />
         ) : (
           <>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-semibold">Carrito de Compras</h2>
+              <h2 className="text-2xl font-semibold">Mi Carrito</h2>
               <button
                 className="text-red-500 hover:text-red-700 transition-colors duration-200"
                 onClick={onClose}
@@ -36,13 +36,14 @@ export default function Cart({ cartItems, onClose }) {
             ) : (
               <>
                 <ul className="mb-4 divide-y divide-gray-200">
-                  {cartItems.map((item) => (
-                    <li key={item.id} className="flex justify-between items-center py-3">
+                  {cartItems.map((item, index) => (
+                    <li key={`${item.id}-${index}`} className="flex justify-between items-center py-3">
                       <span className="font-medium">{item.name} (x{item.quantity})</span>
                       <span className="font-medium">${item.totalPrice.toFixed(2)}</span>
                     </li>
                   ))}
                 </ul>
+
                 <div className="font-semibold text-lg mb-4 text-right">
                   Total: ${totalAmount.toFixed(2)}
                 </div>

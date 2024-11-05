@@ -4,7 +4,6 @@ import {jwtDecode} from 'jwt-decode';
 import ProductList from './ProductList';
 import CategorySelector from './CategorySelector';
 import OfferTimer from './OfferTimer';
-import Header from '../../Header/Header';
 import bombon1 from './products/bombon_1.jpeg'
 import bombon2 from './products/bombon_2.jpeg'
 import yogurt1 from './products/yogurt_1.jpeg'
@@ -33,6 +32,7 @@ import chispas_1 from './products/chispas_1.jpeg'
 import chispas_2 from './products/chispas_2.jpeg'
 import chamoy_1 from './products/chamoy_1.jpeg'
 import chamoy_2 from './products/chamoy_2.jpeg'
+import CartButton from './CartButton';
 
 const products = [
  { id: 1, name: "Yogurt", price: 79.99, discountPrice: 69.99, category: "Dulce Invierno",  images: [yogurt1, yogurt2]},
@@ -163,11 +163,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
 
   return (
     <div>
-      <Header
-        cartItems={cartItems}
-        onAddToCart={addToCart}
-        onNavigation={onNavigation}
-      />
+
       <div>
         <CategorySelector
           categories={categories}
@@ -177,6 +173,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
           showFavorites={showFavorites} // Pass the showFavorites state
         />
         <OfferTimer />
+        <CartButton cartItems={cartItems} />
         <ProductList products={filteredProducts} onAddToCart={addToCart} />
       </div>
     </div>
