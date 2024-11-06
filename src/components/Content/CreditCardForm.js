@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function CreditCardForm({ totalAmount, onClose, cartItems, clearCart }) {
+export default function CreditCardForm({ totalAmount, onClose, cartItems, carritoLimpio }) {
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -65,7 +65,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems, clearC
         throw new Error('Error al eliminar el carrito');
       }
   
-      clearCart();
+      carritoLimpio();
 
   
     } catch (error) {

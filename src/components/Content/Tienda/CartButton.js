@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import Cart from '../Cart';
 
-export default function CartButton({ cartItems, clearCart }) {
+export default function CartButton({ cartItems, carritoLimpio }) {
   const [isCartOpen, setIsCartOpen] = useState(false); // Controla la apertura del carrito
 
   const toggleCart = () => {
@@ -47,7 +47,7 @@ export default function CartButton({ cartItems, clearCart }) {
             onClick={(e) => e.stopPropagation()} // Evitar cierre al hacer clic dentro del Cart
             className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full"
           >
-            <Cart cartItems={cartItems} onClose={() => setIsCartOpen(false)} clearCart={clearCart}/>
+            <Cart cartItems={cartItems} onClose={() => setIsCartOpen(false)} carritoLimpio={carritoLimpio}/>
           </div>
         </div>
       )}

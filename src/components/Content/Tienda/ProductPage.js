@@ -53,13 +53,13 @@ const products = [
 
 const categories = ["Dulce Invierno", "Explosión Tropical", "Toppings"];
 
-export default function ProductPage({ onAddToCart, onNavigation }) {
+export default function ProductPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todas");
   const [cartItems, setCartItems] = useState([]);
   const [userId, setUserId] = useState(null);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false); // New state for showing favorites
-  const clearCart = () => {
+  const carritoLimpio = () => {
     setCartItems([]); // This will clear the cart
   };
   useEffect(() => {
@@ -173,7 +173,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
           showFavorites={showFavorites} // Pass the showFavorites state
         />
         <OfferTimer />
-        <CartButton cartItems={cartItems} clearCart={clearCart}/>
+        <CartButton cartItems={cartItems} carritoLimpio={carritoLimpio}/>
         <ProductList products={filteredProducts} onAddToCart={addToCart} />
       </div>
     </div>
