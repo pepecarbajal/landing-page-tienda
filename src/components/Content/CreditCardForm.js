@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
+export default function CreditCardForm({ totalAmount, onClose, cartItems, clearCart }) {
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -26,49 +26,53 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Log cart items, user ID, and user email
-    console.log('Cart Items:', cartItems);
-    console.log('User ID:', userId);
-    console.log('User Email:', userEmail);
-
-    // Enviar datos de compra al servidor
     const purchaseData = {
-        userId,
-        userEmail,
-        cartItems,
-        totalAmount, // Asegúrate de que `totalAmount` sea el total de la compra
+      userId,
+      userEmail,
+      cartItems,
+      totalAmount, // Asegúrate de que `totalAmount` sea el total de la compra
     };
-    console.log(purchaseData)
-
-    try {
-        const response = await fetch('https://serverhame.onrender.com/api/compras', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(purchaseData),
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al guardar la compra');
-        }
-
-        const data = await response.json();
-        console.log(data.message); // Puedes manejar el mensaje de éxito aquí
-
-        setShowThankYou(true);
-        setTimeout(() => {
-            onClose();
-        }, 3000); // Cerrar después de 3 segundos
-
-    } catch (error) {
-      console.error('Error sending purchase data:', error);
-      // Aquí puedes manejar el error, mostrando un mensaje al usuario
-      alert('Ocurrió un error al procesar tu compra. Por favor, intenta de nuevo.');
-  }
   
-};
+    try {
+      // Enviar datos de compra al servidor
+      const response = await fetch('https://serverhame.onrender.com/api/compras', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(purchaseData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al guardar la compra');
+      }
+  
+      setShowThankYou(true);
+      setTimeout(() => {
+        onClose();
+      }, 3000); // Cerrar después de 3 segundos
+  
+      // Llamada adicional para eliminar el carrito del usuario después de la compra
+      const deleteCartResponse = await fetch('https://serverhame.onrender.com/api/cart', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+  
+      if (!deleteCartResponse.ok) {
+        throw new Error('Error al eliminar el carrito');
+      }
+  
+      clearCart();
+
+  
+    } catch (error) {
+      console.error('Error processing purchase:', error);
+    }
+  };
+  
 
   const handleExpiryDateChange = (e) => {
     const value = e.target.value.replace(/\D/g, '');

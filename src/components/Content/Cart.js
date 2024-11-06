@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CreditCardForm from './CreditCardForm'; // Ensure the path is correct
 
-export default function Cart({ cartItems, onClose }) {
+export default function Cart({ cartItems, onClose, clearCart }) {
   const [isCheckout, setIsCheckout] = useState(false); // State to control checkout view
 
   const handleBuyNow = () => {
@@ -25,6 +25,7 @@ export default function Cart({ cartItems, onClose }) {
               totalAmount={totalAmount}
               onClose={onClose}
               cartItems={cartItems}
+              clearCart={clearCart}
             />
           ) : (
             <>

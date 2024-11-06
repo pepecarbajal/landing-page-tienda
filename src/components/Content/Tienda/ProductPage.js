@@ -59,7 +59,9 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
   const [userId, setUserId] = useState(null);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false); // New state for showing favorites
-
+  const clearCart = () => {
+    setCartItems([]); // This will clear the cart
+  };
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -144,8 +146,6 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
     } catch (error) {
         console.error('Error al agregar al carrito:', error);
     }
-
-    console.log("Producto agregado o actualizado en el carrito:", product);
 };
 
 
@@ -173,7 +173,7 @@ export default function ProductPage({ onAddToCart, onNavigation }) {
           showFavorites={showFavorites} // Pass the showFavorites state
         />
         <OfferTimer />
-        <CartButton cartItems={cartItems} />
+        <CartButton cartItems={cartItems} clearCart={clearCart}/>
         <ProductList products={filteredProducts} onAddToCart={addToCart} />
       </div>
     </div>
