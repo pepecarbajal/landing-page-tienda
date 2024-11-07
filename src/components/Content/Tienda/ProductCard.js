@@ -76,6 +76,8 @@ export default function ProductCard({ product, onAddToCart }) {
     }
   }
 
+  const token = localStorage.getItem('token') // Check if token exists
+
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden max-w-xs mx-auto m-2"> {/* Adjust margin here */}
       <div className="relative aspect-square p-3">
@@ -110,10 +112,12 @@ export default function ProductCard({ product, onAddToCart }) {
       </div>
       <div className="p-4 pt-0">
         <button 
-          className="w-full text-sm font-bold bg-rojo hover:bg-naranja text-white py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center"
-          onClick={() => onAddToCart(product)}
+          className={`w-full  font-bold ${token ? 'bg-rojo hover:bg-naranja text-white' : 'bg-gray-300 text-gray-600 cursor-not-allowed text-sm'} py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center`}
+          onClick={token ? () => onAddToCart(product) : null} // Only call onAddToCart if token exists
+          disabled={!token} 
         >
-          <ShoppingCart className="mr-2 h-3 w-3" /> Agregar al Carrito
+          <ShoppingCart className="mr-2 h-3 w-3" /> 
+          {token ? 'Agregar al Carrito' : 'Iniciar sesión primero'}
         </button>
       </div>
     </div>
