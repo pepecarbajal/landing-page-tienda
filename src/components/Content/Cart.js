@@ -1,24 +1,30 @@
-import React, { useState } from 'react';
-import CreditCardForm from './CreditCardForm'; // Ensure the path is correct
+import React, { useState, useEffect } from 'react';
+import CreditCardForm from './CreditCardForm';
 
 export default function Cart({ cartItems, onClose, carritoLimpio }) {
-  const [isCheckout, setIsCheckout] = useState(false); // State to control checkout view
+  const [isCheckout, setIsCheckout] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleBuyNow = () => {
-    setIsCheckout(true); // Switch to checkout view
+    setIsCheckout(true);
   };
 
   const totalAmount = cartItems.reduce((sum, item) => sum + item.totalPrice, 0);
+  const isBuyNowDisabled = !isLoggedIn || cartItems.length === 0;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white shadow-lg rounded-md p-6 w-96 max-h-[70vh] flex flex-col">
-        {/* Static Header */}
+
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold">Mi Carrito</h2>
         </div>
 
-        {/* Scrollable Content Area */}
         <div className="flex-grow overflow-y-auto">
           {isCheckout ? (
             <CreditCardForm
@@ -51,7 +57,6 @@ export default function Cart({ cartItems, onClose, carritoLimpio }) {
           )}
         </div>
 
-        {/* Buttons positioned at the bottom */}
         <div className="flex space-x-2 mt-4">
           <button
             className="flex-1 text-red-500 hover:text-red-700 transition-colors duration-200"
@@ -60,10 +65,13 @@ export default function Cart({ cartItems, onClose, carritoLimpio }) {
             Cerrar
           </button>
           <button
-            onClick={handleBuyNow}
-            className="flex-1 bg-red-500 text-white font-semibold py-2 rounded-md hover:bg-red-600 transition-colors duration-200"
+            onClick={isBuyNowDisabled ? null : handleBuyNow}
+            disabled={isBuyNowDisabled}
+            className={`flex-1 ${
+              isBuyNowDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
+            } text-white font-semibold py-2 rounded-md transition-colors duration-200`}
           >
-            Comprar Ahora
+            {isBuyNowDisabled ? 'Agrega productos para comprar' : 'Comprar Ahora'}
           </button>
         </div>
       </div>
