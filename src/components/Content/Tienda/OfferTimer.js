@@ -38,14 +38,14 @@ const OfferTimer = () => {
       <div className="p-4">
         {isExpanded ? (
           <>
-            <div className="text-2xl font-bold mb-2">¡40% Off!</div>
+            <div className="text-2xl font-bold mb-2">¡10% Off!</div>
             <div className="text-4xl font-mono">{formatTime(timeLeft)}</div>
             <div className="text-sm mt-2">Tiempo restante</div>
           </>
         ) : (
           <div className="flex items-center justify-center h-full w-full">
             {/* Texto ajustado para modo colapsado */}
-            <div className="text-sm font-bold">¡40% Off!</div>
+            <div className="text-sm font-bold">¡10% Off!</div>
           </div>
         )}
       </div>

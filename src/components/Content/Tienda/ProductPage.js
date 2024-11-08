@@ -35,20 +35,20 @@ import chamoy_2 from './products/chamoy_2.jpeg'
 import CartButton from './CartButton';
 
 const products = [
- { id: 1, name: "Yogurt", price: 79.99, discountPrice: 69.99, category: "Dulce Invierno",  images: [yogurt1, yogurt2]},
- { id: 2, name: "Malvaviscos", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [bombon1, bombon2]},
- { id: 3, name: "Tamarindo", price: 79.99, discountPrice: 69.99, category: "Explosión Tropical",  images: [tamarindo1, tamarindo2]},
- { id: 4, name: "Maracuyá / Naranja", price: 79.99, discountPrice: 69.99, category: "Explosión Tropical",  images: [naranja1, naranja2]},
- { id: 5, name: "Mangos Desidratados", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [mangos1, mangos2]},
- { id: 6, name: "Jamaica / Fresa", price: 79.99, discountPrice: 69.99, category: "Explosión Tropical",  images: [jamaica1, jamaica2]},
- { id: 7, name: "Gomitas", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [gomitas1, gomitas2]},
- { id: 8, name: "Gomitas Enchiladas", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [gomitase1, gomitase2]},
- { id: 9, name: "Fresa", price: 79.99, discountPrice: 69.99, category: "Dulce Invierno",  images: [fresa_1, fresa_2]},
- { id: 10, name: "Durazno", price: 79.99, discountPrice: 69.99, category: "Dulce Invierno",  images: [durazno_1, durazno_2]},
- { id: 11, name: "Coco Rayado", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [coco_1, coco_2]},
- { id: 12, name: "Chocolate Liquido", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [chocolate_1, chocolate_2]},
- { id: 13, name: "Chispas de Chocolate", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [chispas_1, chispas_2]},
- { id: 14, name: "Chamoy", price: 79.99, discountPrice: 69.99, category: "Toppings",  images: [chamoy_1, chamoy_2]},
+ { id: 1, name: "Yogurt", price: 29.99, discountPrice: 26.99, category: "Dulce Invierno",  images: [yogurt1, yogurt2]},
+ { id: 2, name: "Malvaviscos", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [bombon1, bombon2]},
+ { id: 3, name: "Tamarindo", price: 25.99, discountPrice:  23.39, category: "Explosión Tropical",  images: [tamarindo1, tamarindo2]},
+ { id: 4, name: "Maracuyá / Naranja", price: 25.99, discountPrice: 23.39, category: "Explosión Tropical",  images: [naranja1, naranja2]},
+ { id: 5, name: "Mangos Desidratados", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [mangos1, mangos2]},
+ { id: 6, name: "Jamaica / Fresa", price: 25.99, discountPrice:  23.39, category: "Explosión Tropical",  images: [jamaica1, jamaica2]},
+ { id: 7, name: "Gomitas", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [gomitas1, gomitas2]},
+ { id: 8, name: "Gomitas Enchiladas", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [gomitase1, gomitase2]},
+ { id: 9, name: "Fresa", price: 29.99, discountPrice: 26.99, category: "Dulce Invierno",  images: [fresa_1, fresa_2]},
+ { id: 10, name: "Durazno", price: 29.99, discountPrice: 26.99, category: "Dulce Invierno",  images: [durazno_1, durazno_2]},
+ { id: 11, name: "Coco Rayado", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [coco_1, coco_2]},
+ { id: 12, name: "Chocolate Liquido", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [chocolate_1, chocolate_2]},
+ { id: 13, name: "Chispas de Chocolate", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [chispas_1, chispas_2]},
+ { id: 14, name: "Chamoy", price: 89.99, discountPrice: 80.99, category: "Toppings",  images: [chamoy_1, chamoy_2]},
 ];
 
 const categories = ["Dulce Invierno", "Explosión Tropical", "Toppings"];
