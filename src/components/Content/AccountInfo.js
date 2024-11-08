@@ -83,7 +83,7 @@ const AccountInfo = ({ isAuthenticated }) => {
               <span className="font-medium">{userId}</span>
             </p>
           </div>
-          {userId === "672174f27f6b1df4cab10502" || userId === "672d884bf72803508ccf96db" && (
+          {(userId === "672174f27f6b1df4cab10502" || userId === "672d884bf72803508ccf96db") && (
             <button 
               onClick={openCompras} 
               className="mt-4 w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors duration-300"
