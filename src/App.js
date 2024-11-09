@@ -73,9 +73,7 @@ export default function App() {
           </>
         );
       case 'tienda':
-        return <ProductPage onAddToCart={handleAddToCart} onNavigation={handleNavigation} />; // Pasa onNavigation a ProductPage
-      case 'acerca':
-        return <div>Acerca de Content</div>;
+        return <ProductPage onAddToCart={handleAddToCart} />;
       case 'contacto':
         return <Contact />;
       default:

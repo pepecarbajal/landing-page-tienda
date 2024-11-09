@@ -11,7 +11,6 @@ export default function Header({ onLoginClick, onNavigation }) {
   // Menu items for navigation, including "Tienda"
   const menuItems = [
     { name: 'Inicio', id: 'inicio' },
-    { name: 'Acerca de', id: 'acerca' },
     { name: 'Contacto', id: 'contacto' },
     { name: 'Tienda', id: 'tienda' }, // Added "Tienda" as a menu item
   ];
