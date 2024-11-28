@@ -23,40 +23,31 @@ const Productos = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
   };
 
-  const handleBuy = (productName) => {
-    alert(`Has comprado: ${productName}`);
-  };
 
   return (
     <div className="relative w-full h-screen flex flex-col items-center justify-center bg-naranja text-center">
       <div className="md:hidden">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-[320px] text-center">
+        <div className="bg-white rounded-3xl shadow-2xl p-8 w-[320px] text-center border-2 border-gray-300">
           <img 
             src={products[currentIndex].image} 
             alt={products[currentIndex].name} 
-            className="w-full h-[420px] object-cover mb-6 rounded" 
+            className="w-full h-[420px] object-cover mb-6 rounded-xl" 
           />
-          <h2 className="text-2xl font-bold mb-4">{products[currentIndex].name}</h2>
-          <p className="text-gray-700 text-lg mb-6">{products[currentIndex].price}</p>
-          <button 
-            onClick={() => handleBuy(products[currentIndex].name)} 
-            className="bg-naranja text-white border-2 border-yellow-500 rounded-md px-4 py-2 hover:bg-orange-600 transition duration-300"
-          >
-            Comprar Paleta
-          </button>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">{products[currentIndex].name}</h2>
+          
         </div>
 
         {/* Contenedor para los botones centrados */}
         <div className="flex justify-center mt-6 space-x-6">
           <button 
             onClick={handlePrevProduct} 
-            className="flex items-center justify-center bg-gray-300 rounded-full p-2 hover:bg-gray-400 transition duration-300"
+            className="flex items-center justify-center bg-gray-300 rounded-full p-3 hover:bg-gray-400 transition duration-300"
           >
             <img src={arrowLeft} alt="Anterior" className="w-8 h-8 transform rotate-180" />
           </button>
           <button 
             onClick={handleNextProduct} 
-            className="flex items-center justify-center bg-gray-300 rounded-full p-2 hover:bg-gray-400 transition duration-300"
+            className="flex items-center justify-center bg-gray-300 rounded-full p-3 hover:bg-gray-400 transition duration-300"
           >
             <img src={arrowRight} alt="Siguiente" className="w-8 h-8" />
           </button>
@@ -65,20 +56,13 @@ const Productos = () => {
 
       <div className="hidden md:grid grid-cols-3 gap-8">
         {products.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg shadow-lg p-8 w-[350px] text-center">
+          <div key={product.id} className="bg-white rounded-3xl shadow-2xl p-8 w-[350px] text-center border-2 border-gray-300">
             <img 
               src={product.image} 
               alt={product.name} 
-              className="w-full h-[500px] object-cover mb-6 rounded" 
+              className="w-full h-[500px] object-cover mb-6 rounded-xl" 
             />
-            <h2 className="text-2xl font-bold mb-4">{product.name}</h2>
-            <p className="text-gray-700 text-lg mb-6">{product.price}</p>
-            <button 
-              onClick={() => handleBuy(product.name)} 
-              className="bg-naranja text-white border-2 border-yellow-500 rounded-md px-4 py-2 hover:bg-orange-600 transition duration-300"
-            >
-              Comprar Paleta
-            </button>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">{product.name}</h2>
           </div>
         ))}
       </div>

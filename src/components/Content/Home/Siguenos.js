@@ -21,7 +21,7 @@ const Siguenos = () => {
       <img 
         src={image} 
         alt="Código QR" 
-        className="w-3/4 h-auto md:w-1/4 mb-8" 
+        className="w-3/4 h-auto md:w-1/4 mb-8 border-2 border-white rounded-md"  
       />
 
       {/* Yellow Card */}

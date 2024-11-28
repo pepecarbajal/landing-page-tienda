@@ -1,6 +1,6 @@
 // HeroSection.js
 import React from 'react';
-import logo from '../img/fondo.png'; // Ensure the path is correct
+import logo from '../img/fondo.webp'; // Ensure the path is correct
 
 const HeroSection = () => {
   return (

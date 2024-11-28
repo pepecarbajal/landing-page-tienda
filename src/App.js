@@ -15,6 +15,8 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Contact from './components/Content/Contact/Contact';
 import ProductPage from './components/Content/Tienda/ProductPage';
+import Favoritos from './components/Content/Favoritos';
+import Acerca from './components/Content/Acerca/Acerca';
 
 export default function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -44,7 +46,7 @@ export default function App() {
 
   const handleAddToCart = (product) => {
     const existingProduct = cartItems.find(item => item.id === product.id);
-  
+
     if (existingProduct) {
       // Update the quantity and recalculate the price for the existing product
       setCartItems(cartItems.map(item =>
@@ -76,6 +78,10 @@ export default function App() {
         return <ProductPage onAddToCart={handleAddToCart} />;
       case 'contacto':
         return <Contact />;
+      case 'favoritos':
+        return <Favoritos />;
+      case 'acerca':
+        return <Acerca />;
       default:
         return null;
     }
@@ -83,9 +89,9 @@ export default function App() {
 
   return (
     <>
-      <Header 
+      <Header
         cartItems={cartItems} // Pasar cartItems al Header
-        onLoginClick={handleLoginClick} 
+        onLoginClick={handleLoginClick}
         onRegisterClick={handleRegisterClick}
         onNavigation={handleNavigation}
       />

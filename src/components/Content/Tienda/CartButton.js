@@ -14,7 +14,7 @@ export default function CartButton({ cartItems, carritoLimpio }) {
       {/* Botón de carrito deslizante en la derecha */}
       <div
         onClick={toggleCart}
-        className={`fixed right-0 top-1/16 -translate-y-1/2 bg-rojo text-white rounded-l-lg shadow-lg z-50 transition-transform duration-300 ease-in-out cursor-pointer ${
+        className={`fixed right-0 top-1/16 -translate-y-1/2 bg-rojo text-white rounded-l-lg shadow-lg z-40 transition-transform duration-300 ease-in-out cursor-pointer ${
           isCartOpen ? 'translate-x-0' : 'translate-x-[calc(100%-3.5rem)]'
         }`}
         style={{ width: isCartOpen ? 'auto' : '3.5rem' }} // Ajustar ancho según expansión

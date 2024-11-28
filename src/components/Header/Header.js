@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from './clogo.png';
+import logo from './clogo.webp';
 import AccountInfo from '../Content/AccountInfo';
 
 export default function Header({ onLoginClick, onNavigation }) {
@@ -8,12 +8,14 @@ export default function Header({ onLoginClick, onNavigation }) {
   const [headerHover, setHeaderHover] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Menu items for navigation, including "Tienda"
   const menuItems = [
     { name: 'Inicio', id: 'inicio' },
+    { name: 'Tienda', id: 'tienda' },
+    { name: 'Favoritos', id: 'favoritos' },
+    { name: 'Acerca de', id: 'acerca' },
     { name: 'Contacto', id: 'contacto' },
-    { name: 'Tienda', id: 'tienda' }, // Added "Tienda" as a menu item
   ];
+  
 
   // Check authentication status on component mount
   useEffect(() => {
