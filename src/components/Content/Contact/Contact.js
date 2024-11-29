@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Contact = () => {
+
   const [formData, setFormData] = useState({
     nombre: '',
     apellidos: '',
@@ -47,13 +48,14 @@ const Contact = () => {
       {/* Contenedor de contenido que excluye el header */}
       <div className="flex-1 overflow-auto bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          
+
 
           <div className="bg-white shadow-md rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">Ponte en contacto con nosotros.</h3>
             <p className="mb-2">hame131102@gmail.com</p>
             <p className="mb-2">(747) 1 928168</p>
             <p>Av. Guerrero, 37-B<br />Chilpancingo, Gro 39000</p>
+            
           </div>
 
           <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6">
@@ -129,6 +131,7 @@ const Contact = () => {
           {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
         </div>
       </div>
+
     </div>
   );
 };
