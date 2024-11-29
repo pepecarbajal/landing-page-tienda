@@ -84,39 +84,77 @@ export default function Cart({ cartItems, onClose, carritoLimpio }) {
           </button>
 
         </div>
-        <div className="mt-2 text-center">
+        <div className="mt-2 flex justify-center space-x-4">
           <button
             onClick={openModal}
             className="text-gray-500 hover:underline"
           >
-            Ver Política de Privacidad
+            Código de Ética
           </button>
+
+          <a
+            href="/contrato.pdf"
+            download="Contrato HAME.pdf"
+            className="text-gray-500 hover:underline"
+          >
+            Descargar Contrato
+          </a>
         </div>
+
+
 
 
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-96">
-            <h2 className="text-2xl font-semibold mb-4">Política de Privacidad</h2>
-            <p className="text-sm text-gray-700 mb-4">
-              Ullamco culpa eu labore occaecat enim. Ipsum nostrud qui duis qui elit irure. Irure pariatur anim anim velit nulla exercitation nulla anim anim eu proident enim ipsum deserunt.
-
-Amet cillum esse ullamco consequat aute nisi occaecat. Commodo id sint ipsum qui exercitation culpa reprehenderit cupidatat minim ad Lorem qui. Elit nulla est aliqua occaecat fugiat dolore proident occaecat.
-
-Nisi tempor sunt duis adipisicing. Ad fugiat aliqua commodo Lorem do enim enim velit. Voluptate do incididunt in nulla irure adipisicing dolore nisi amet irure ad. Deserunt pariatur enim officia sit sit elit Lorem. Velit proident ipsum reprehenderit nulla culpa nisi deserunt velit consequat Lorem est. Ut culpa nostrud deserunt cillum sit aliquip.
-
-Eiusmod amet in proident commodo esse anim deserunt commodo minim cupidatat. Commodo sunt culpa veniam duis do. Sint irure sunt in occaecat adipisicing cupidatat ea. Anim exercitation eu labore tempor ad nostrud.
+          <div className="bg-white p-4 sm:p-6 rounded-lg w-full max-w-lg sm:w-96 max-h-[70vh] overflow-y-auto">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center">
+              Código de Ética de HAME
+            </h2>
+            <p className="text-sm text-gray-700 mb-4 leading-relaxed text-justify">
+              En HAME, nos comprometemos a mantener los más altos estándares éticos en todas nuestras operaciones y relaciones comerciales. Nuestro código de ética refleja nuestros valores fundamentales y nuestro compromiso con la integridad, la transparencia y la responsabilidad social. Todos los empleados y colaboradores de HAME están obligados a cumplir con los siguientes principios:
             </p>
-            <button
-              onClick={closeModal}
-              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700"
-            >
-              Cerrar
-            </button>
+            <ol className="list-decimal list-inside text-sm text-gray-700 mb-4 space-y-2 text-justify">
+              <li>
+                <strong>Calidad y Excelencia:</strong> Nos comprometemos a ofrecer productos de la más alta calidad, elaborados con ingredientes frescos y naturales, siguiendo los más altos estándares de higiene y seguridad alimentaria.
+              </li>
+              <li>
+                <strong>Transparencia y Honestidad:</strong> Nos comprometemos a ser transparentes y honestos en todas nuestras comunicaciones y transacciones comerciales. No toleramos el fraude, la corrupción ni ningún tipo de comportamiento deshonesto.
+              </li>
+              <li>
+                <strong>Sostenibilidad y Responsabilidad Ambiental:</strong> Nos comprometemos a minimizar nuestro impacto ambiental y a promover prácticas comerciales sostenibles. Buscamos reducir el desperdicio de recursos, reciclar siempre que sea posible y apoyar iniciativas que contribuyan a la protección del medio ambiente.
+              </li>
+              <li>
+                <strong>Servicio al Cliente:</strong> Nos comprometemos a brindar un servicio al cliente excepcional, basado en la cortesía, la amabilidad y la atención personalizada. Nos esforzamos por superar las expectativas de nuestros clientes en cada interacción.
+              </li>
+              <li>
+                <strong>Comunidad y Compromiso Social:</strong> Nos comprometemos a ser buenos ciudadanos corporativos y a contribuir positivamente al bienestar de las comunidades donde operamos. Apoyamos iniciativas sociales y comunitarias que promuevan la equidad, la inclusión y el desarrollo sostenible.
+              </li>
+              <li>
+                <strong>Ética en la Competencia:</strong> Nos comprometemos a competir de manera justa y ética en el mercado, respetando las leyes y regulaciones vigentes. No participamos en prácticas comerciales desleales ni en actividades que puedan dañar la reputación de nuestra empresa o de la industria en general.
+              </li>
+            </ol>
+            <p className="text-sm text-gray-700 mb-4 text-justify">
+              Todos los empleados y colaboradores de HAME son responsables de conocer y cumplir con este código de ética en todo momento. Cualquier violación de estos principios será tratada con seriedad y puede dar lugar a medidas disciplinarias, incluida la terminación del empleo o la relación comercial.
+            </p>
+            <p className="text-sm text-gray-500 text-center">
+              Fecha de Entrada en Vigencia: 12/05/2024
+            </p>
+            <div className="mt-4 flex justify-center">
+              <button
+                onClick={closeModal}
+                className="px-4 py-2 bg-rojo text-white rounded-md hover:bg-red-700"
+              >
+                Cerrar
+              </button>
+            </div>
           </div>
         </div>
       )}
+
+
+
+
 
 
     </div>
