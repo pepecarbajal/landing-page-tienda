@@ -12,7 +12,7 @@ const Login = ({ onRegisterClick, onClose }) => {
 
     try {
       // Realizar la solicitud de inicio de sesión
-      const response = await fetch('https://serverhame.onrender.com/api/auth/login', {
+      const response = await fetch('http://187.200.138.0:3000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

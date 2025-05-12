@@ -25,7 +25,7 @@ export default function ProductCard({ product, onAddToCart }) {
 
   useEffect(() => {
     if (userId) {
-      fetch(`https://serverhame.onrender.com/api/favorites/${userId}`)
+      fetch(`http://187.200.138.0:3000/api/favorites/${userId}`)
         .then(response => response.json())
         .then(favorites => {
           const isProductFavorite = favorites.some(fav => fav.productId === product.id)
@@ -52,7 +52,7 @@ export default function ProductCard({ product, onAddToCart }) {
       return
     }
 
-    const endpoint = `https://serverhame.onrender.com/api/favorites`
+    const endpoint = `http://187.200.138.0:3000/api/favorites`
     const method = isFavorite ? 'DELETE' : 'POST'
     const body = JSON.stringify({ userId, productId: product.id })
 

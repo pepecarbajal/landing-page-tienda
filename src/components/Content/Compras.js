@@ -11,7 +11,7 @@ const Compras = ({ onClose }) => {
   useEffect(() => {
     const fetchCompras = async () => {
       try {
-        const response = await fetch('https://serverhame.onrender.com/api/compras')
+        const response = await fetch('http://187.200.138.0:3000/api/compras')
         if (!response.ok) {
           throw new Error('Error al obtener las compras')
         }

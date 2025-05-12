@@ -25,7 +25,7 @@ export default function Favoritos() {
   // Obtener favoritos desde el servidor
   useEffect(() => {
     if (userId) {
-      fetch(`https://serverhame.onrender.com/api/favorites/${userId}`)
+      fetch(`http://187.200.138.0:3000/api/favorites/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Filtrar los productos locales con los IDs de los favoritos

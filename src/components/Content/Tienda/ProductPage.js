@@ -39,7 +39,7 @@ export default function ProductPage() {
 
   const fetchFavorites = async (userId) => {
     try {
-      const response = await fetch(`https://serverhame.onrender.com/api/favorites/${userId}`);
+      const response = await fetch(`http://187.200.138.0:3000/api/favorites/${userId}`);
       const data = await response.json();
 
       const favoriteProductIds = data.map(favorite => favorite.productId);
@@ -54,7 +54,7 @@ export default function ProductPage() {
     if (userId) {
       const fetchCartItems = async () => {
         try {
-          const response = await fetch(`https://serverhame.onrender.com/api/cart?userId=${userId}`);
+          const response = await fetch(`http://187.200.138.0:3000/api/cart?userId=${userId}`);
           const data = await response.json();
 
           setCartItems(
@@ -92,7 +92,7 @@ export default function ProductPage() {
     }
 
     try {
-        await fetch('https://serverhame.onrender.com/api/cart', {
+        await fetch('http://187.200.138.0:3000/api/cart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

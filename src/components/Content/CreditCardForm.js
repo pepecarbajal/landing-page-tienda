@@ -35,7 +35,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems, carrit
   
     try {
       // Enviar datos de compra al servidor
-      const response = await fetch('https://serverhame.onrender.com/api/compras', {
+      const response = await fetch('http://187.200.138.0:3000/api/compras', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function CreditCardForm({ totalAmount, onClose, cartItems, carrit
       }, 3000); // Cerrar después de 3 segundos
   
       // Llamada adicional para eliminar el carrito del usuario después de la compra
-      const deleteCartResponse = await fetch('https://serverhame.onrender.com/api/cart', {
+      const deleteCartResponse = await fetch('http://187.200.138.0:3000/api/cart', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
