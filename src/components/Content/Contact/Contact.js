@@ -24,7 +24,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://187.200.138.0:3000/api/contact', {
+      const response = await fetch('https://serverhame-tg6x.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
